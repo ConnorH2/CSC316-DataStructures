@@ -70,7 +70,7 @@ public class MinimumSpanningTreeUtil {
         	// Connect the sets of the endpoints, if u != v
         	Position<Vertex<V>> u = sets.find(endpoints[0]);
         	Position<Vertex<V>> v = sets.find(endpoints[1]);
-        	if(u != v)
+        	if(!u.equals(v))
         	{
         		sets.union(u, v);
         		mstEdges.addLast(edge);

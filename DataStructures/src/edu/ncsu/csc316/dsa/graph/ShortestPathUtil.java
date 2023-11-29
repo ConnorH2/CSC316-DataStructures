@@ -46,7 +46,7 @@ public class ShortestPathUtil {
         // Insert all the vertices into our costMap, entryMap, and vertexAPQ
         for(Vertex<V> v : graph.vertices())
         {
-        	if(v.equals(start))
+        	if(v == start)
         	{
         		costMap.put(v, 0);
         	}
