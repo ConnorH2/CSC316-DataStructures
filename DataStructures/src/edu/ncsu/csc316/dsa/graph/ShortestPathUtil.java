@@ -38,7 +38,7 @@ public class ShortestPathUtil {
      *         graph
      */ 
     public static <V, E extends Weighted> Map<Vertex<V>, Integer> dijkstra(Graph<V, E> graph, Vertex<V> start) {
-        AdaptablePriorityQueue<Integer, Vertex<V>> vertexAPQ = new HeapAdaptablePriorityQueue<Integer, Vertex<V>>();
+        AdaptablePriorityQueue<Integer, Vertex<V>> vertexAPQ = new HeapAdaptablePriorityQueue<>();
         Map<Vertex<V>, Integer> costMap = new UnorderedLinkedMap<Vertex<V>, Integer>();
         Set<Vertex<V>> found = new HashSet<Vertex<V>>();
         Map<Vertex<V>, Entry<Integer, Vertex<V>>> entryMap = new UnorderedLinkedMap<Vertex<V>, Entry<Integer, Vertex<V>>>();
