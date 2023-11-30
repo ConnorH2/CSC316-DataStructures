@@ -171,6 +171,23 @@ public class HeapPriorityQueue<K extends Comparable<K>, V> extends AbstractPrior
      */
     protected void upHeap(int index) {
     	// If we reach the top of the list, no more upHeap-ing is needed
+    	if(index > 0)
+    	{
+    		int parentIndex = (index - 1) / 2;
+    		
+    		// Parent should be less than the child in an up heap
+    		if(compare(list.get(parentIndex).getKey(), list.get(index).getKey()) > 0)
+    		{
+    			// Parent greater than child, need to swap
+            	swap(index, parent(index));
+            	
+            	// Call upHeap recursively
+            	upHeap(parent(index));
+    		}
+    	}
+    	
+    	/*
+    	// If we reach the top of the list, no more upHeap-ing is needed
     	if(list.get(index).equals(list.first())) {
     		return;
     	}
@@ -186,6 +203,7 @@ public class HeapPriorityQueue<K extends Comparable<K>, V> extends AbstractPrior
         	// Call upHeap recursively
         	upHeap(parent(index));
         }
+        */
     }
 
     /**
