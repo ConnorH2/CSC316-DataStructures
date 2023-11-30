@@ -210,49 +210,25 @@ public class HeapPriorityQueue<K extends Comparable<K>, V> extends AbstractPrior
      */
     protected void downHeap(int index) {
     	// If there is no children, no more downHeap-ing is needed
-    	if(!hasLeft(index) && !hasRight(index)) {
+    	if(left(index) >= list.size()) {
     		return;
     	}
     	
-    	Entry<K, V> current = list.get(index);
     	
-    	if(hasLeft(index) && hasRight(index)) {
-    		// Has both children, find out if either key is lower than the current
-    		Entry<K, V> left = list.get(left(index));
-    		Entry<K, V> right = list.get(right(index));
-    		
-    		// Check if either left or right lower than both
-    		if(compare(left.getKey(), current.getKey()) < 0 && compare(left.getKey(), right.getKey()) <= 0) {
-            	// Swap current with left
-            	swap(index, left(index));
-            	
-            	// Call downHeap recursively
-            	downHeap(left(index));
-            } else if(compare(right.getKey(), current.getKey()) < 0 && compare(right.getKey(), left.getKey()) < 0) {
-            	// Swap current with right
-            	swap(index, right(index));
-            	
-            	// Call downHeap recursively
-            	downHeap(right(index));
-            } else {
-            	// Current lower than both children, no swap needed
-            	return;
-            }
-    	} else if (hasLeft(index) && compare(list.get(left(index)).getKey(), current.getKey()) < 0) {
-    		// Left child less than current, swap current with left
-    		swap(index, left(index));
-        	
-        	// Call downHeap recursively
-        	downHeap(left(index));
-    	} else if (hasRight(index) && compare(list.get(right(index)).getKey(), current.getKey()) < 0) {
-    		// Right child less than current, swap current with right
-    		swap(index, right(index));
-        	
-        	// Call downHeap recursively
-        	downHeap(right(index));
-    	} else {
-    		// Current lower than its only child, no swap needed
-    		return;
+    	// Find the index of the smaller child
+    	int smallerChild = left(index);
+    	
+    	if(right(index) < list.size() && compare(list.get(right(index)).getKey(), list.get(left(index)).getKey()) < 0)
+    	{
+    		// Right is the smaller child
+    		smallerChild = right(index);
+    	}
+    	
+    	// If the parent is larger than the smaller child, we want to downheap
+    	if(compare(list.get(index).getKey(), list.get(smallerChild).getKey()) > 0)
+    	{
+    		swap(index, smallerChild);
+    		downHeap(smallerChild);
     	}
     }
 }
