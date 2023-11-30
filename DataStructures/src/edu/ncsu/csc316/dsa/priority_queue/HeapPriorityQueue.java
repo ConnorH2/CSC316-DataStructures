@@ -179,7 +179,7 @@ public class HeapPriorityQueue<K extends Comparable<K>, V> extends AbstractPrior
     	Entry<K, V> current = list.get(index);
     	
     	// Parent should be less than the child in an up heap
-        if(compare(parent.getKey(), current.getKey()) >= 0) {
+        if(compare(current.getKey(), parent.getKey()) < 0) {
         	// Parent greater than child, need to swap
         	swap(index, parent(index));
         	
