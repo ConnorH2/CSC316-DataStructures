@@ -222,7 +222,7 @@ public class HeapPriorityQueue<K extends Comparable<K>, V> extends AbstractPrior
     		Entry<K, V> right = list.get(right(index));
     		
     		// Check if either left or right lower than both
-    		if(compare(left.getKey(), current.getKey()) < 0 && compare(left.getKey(), right.getKey()) < 0) {
+    		if(compare(left.getKey(), current.getKey()) < 0 && compare(left.getKey(), right.getKey()) <= 0) {
             	// Swap current with left
             	swap(index, left(index));
             	
