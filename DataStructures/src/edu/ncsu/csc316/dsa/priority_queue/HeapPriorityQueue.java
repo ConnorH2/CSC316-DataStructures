@@ -210,7 +210,7 @@ public class HeapPriorityQueue<K extends Comparable<K>, V> extends AbstractPrior
      */
     protected void downHeap(int index) {
     	// If there is no children, no more downHeap-ing is needed
-    	if(left(index) >= list.size()) {
+    	if(!hasLeft(index) && !hasRight(index)) {
     		return;
     	}
     	
