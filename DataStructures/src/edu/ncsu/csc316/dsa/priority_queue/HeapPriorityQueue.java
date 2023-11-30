@@ -143,15 +143,13 @@ public class HeapPriorityQueue<K extends Comparable<K>, V> extends AbstractPrior
         }
         // Get the min entry
         Entry<K, V> removed = list.first();
-        // Set the first entry to the last entry in the heap, then downheap, unless we are removing the root
-        if(list.size() > 1) { 
-        	// Only do this if we are not removing the last entry in the list
-        	list.set(0, list.removeLast());
-        	downHeap(0);
-        } else {
-        	// We are removing the root, no need to downheap
-        	list.removeLast();
-        }
+        
+        // Swap the min with the last element and remove the new last element
+        swap(0, list.size() - 1);
+        list.removeLast();
+        
+        // Downheap to ensure the heap is in correct order
+        downHeap(0);
         
         return removed;
     }
@@ -185,25 +183,6 @@ public class HeapPriorityQueue<K extends Comparable<K>, V> extends AbstractPrior
             	upHeap(parent(index));
     		}
     	}
-    	
-    	/*
-    	// If we reach the top of the list, no more upHeap-ing is needed
-    	if(list.get(index).equals(list.first())) {
-    		return;
-    	}
-    	
-    	Entry<K, V> parent = list.get(parent(index));
-    	Entry<K, V> current = list.get(index);
-    	
-    	// Parent should be less than the child in an up heap
-        if(compare(current.getKey(), parent.getKey()) < 0) {
-        	// Parent greater than child, need to swap
-        	swap(index, parent(index));
-        	
-        	// Call upHeap recursively
-        	upHeap(parent(index));
-        }
-        */
     }
 
     /**
