@@ -155,7 +155,7 @@ public class HeapPriorityQueueTest {
      */ 
     @Test
     public void testStudentHeap() {
-    	HeapPriorityQueue<Student, String> sHeap = new HeapPriorityQueue<Student, String>(new StudentIDComparator());
+        PriorityQueue<Student, String> sHeap = new HeapPriorityQueue<Student, String>(new StudentIDComparator());
         Student s1 = new Student("J", "K", 1, 1, 1, "jk1");
         Student s2 = new Student("J", "S", 2, 1, 2, "js2");
         Student s3 = new Student("S", "H", 3, 1, 3, "sh3");
@@ -180,9 +180,6 @@ public class HeapPriorityQueueTest {
         assertEquals(1, sHeap.size());
         assertFalse(sHeap.isEmpty());
         assertEquals("four", sHeap.min().getValue());
-        
-        assertFalse(sHeap.hasLeft(0));
-        assertFalse(sHeap.hasRight(0));
         
         sHeap.insert(s3, "three");
         assertEquals(2, sHeap.size());

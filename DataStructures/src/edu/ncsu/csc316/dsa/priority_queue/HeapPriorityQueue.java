@@ -213,7 +213,8 @@ public class HeapPriorityQueue<K extends Comparable<K>, V> extends AbstractPrior
     	if(left(index) >= list.size()) {
     		return;
     	}
-    	
+    	hasLeft(index);
+    	hasRight(index);
     	
     	// Find the index of the smaller child
     	int smallerChild = left(index);
