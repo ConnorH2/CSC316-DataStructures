@@ -213,8 +213,6 @@ public class HeapPriorityQueue<K extends Comparable<K>, V> extends AbstractPrior
     	if(left(index) >= list.size()) {
     		return;
     	}
-    	hasLeft(index);
-    	hasRight(index);
     	
     	// Find the index of the smaller child
     	int smallerChild = left(index);
@@ -225,11 +223,13 @@ public class HeapPriorityQueue<K extends Comparable<K>, V> extends AbstractPrior
     		smallerChild = right(index);
     	}
     	
-    	// If the parent is larger than the smaller child, we want to downheap
-    	if(compare(list.get(index).getKey(), list.get(smallerChild).getKey()) > 0)
+    	// If the parent is smaller, no need to downheap
+    	if(compare(list.get(smallerChild).getKey(), list.get(index).getKey()) >= 0)
     	{
-    		swap(index, smallerChild);
-    		downHeap(smallerChild);
+    		return;
     	}
+    	
+    	swap(index, smallerChild);
+		downHeap(smallerChild);
     }
 }
